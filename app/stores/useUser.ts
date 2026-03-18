@@ -23,8 +23,7 @@ export const useUser = defineStore(
       authState.value = "verify-email";
     }
 
-    function setAuthorized(u: User) {
-      user.value = u;
+    function setAuthorized() {
       authState.value = "authorized";
       otpExpiresAt.value = null;
     }
@@ -37,7 +36,9 @@ export const useUser = defineStore(
 
     async function fetchUser() {
       useApiDefendedRequest(async () => {
-        const userData = (await $fetch("/api/users/me")) as User | null;
+        const userData = (await $fetch("/api/users/me", {
+          credentials: "include",
+        })) as User | null;
 
         if (!userData) return;
 

@@ -38,7 +38,9 @@ async function onSubmitCheck() {
       color: "success",
     });
 
-    userState.setPendingOtp();
+    await userState.fetchUser();
+
+    userState.setAuthorized();
 
     navigateTo("/app", { redirectCode: 302 });
   } catch (err) {

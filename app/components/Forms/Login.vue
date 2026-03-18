@@ -36,11 +36,16 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
     };
 
     if (!resp.access_token) {
-      throw "Какая-то ебанина";
+      toast.add({
+        title: "Проблемы с авторизацией!!!",
+        description: "Сосите!",
+        color: "success",
+      });
+      return;
     }
 
-    userState.setPendingOtp();
     userState.tempToken = resp.access_token;
+    userState.setPendingOtp();
 
     toast.add({
       title: "Нужно ввести код с почты!",

@@ -4,7 +4,7 @@ export function useResendTimer() {
   let interval: ReturnType<typeof setInterval>;
 
   onMounted(() => {
-    secondsLeft.value = 1;
+    secondsLeft.value = 30;
 
     interval = setInterval(() => {
       secondsLeft.value--;
